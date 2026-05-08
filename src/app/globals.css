@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Кастомные цвета */
+  --color-neo-bg: #ffdee9;
+  --color-neo-primary: #ff6b6b;
+  --color-neo-secondary: #4ecdc4;
+  --color-neo-accent: #ffe66d;
+  --color-neo-dark: #2c3e50;
+
+  /* Подключаем шрифты из next/font (переменные из layout.tsx) */
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Нео-брутальные тени */
+  --shadow-neo: 5px 5px 0px 0px #000000;
+  --shadow-neo-hover: 8px 8px 0px 0px #000000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Ваши глобальные стили */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-neo-bg);
+  background-image: linear-gradient(0deg, var(--color-neo-bg) 0%, #b5fffc 100%);
+  min-height: 100vh;
+}
+
+/* Анимация появления */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
