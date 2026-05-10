@@ -1,5 +1,4 @@
-import { projects } from "@/data/projects";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectsGrid from "@/components/ProjectsGrid";
 
 export default function Home() {
   return (
@@ -16,21 +15,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Вызываем наш новый компонент с сеткой */}
       <main className="container mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {/* Автоматический рендер всех проектов из базы */}
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-
-          {/* Карточки "СКОРО" (Placeholders) */}
-          <div className="bg-white/50 backdrop-blur-sm border-4 border-black border-dashed p-8 flex flex-col items-center justify-center text-center min-h-[300px] opacity-70 hover:opacity-100 transition-opacity">
-            <span className="text-4xl mb-4">🚧</span>
-            <h3 className="font-black text-xl mb-2">СКОРО</h3>
-            <p className="font-mono text-sm">Новый проект в разработке</p>
-          </div>
-        </div>
+        <ProjectsGrid />
       </main>
     </>
   );

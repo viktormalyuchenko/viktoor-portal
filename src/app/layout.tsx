@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Space_Mono } from "next/font/google";
+import Script from "next/script"; // <-- ИМПОРТИРУЕМ SCRIPT
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -29,7 +30,17 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${spaceMono.variable} font-sans text-black overflow-x-hidden selection:bg-neo-primary selection:text-white`}
       >
-        {/* Global Header */}
+        {/* === ЯНДЕКС МЕТРИКА (NOSCRIPT) === */}
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/109137828"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
+
         <header className="w-full bg-white border-b-4 border-black p-4 flex justify-between items-center sticky top-0 z-50 shadow-neo">
           <a
             href="/"
@@ -38,13 +49,12 @@ export default function RootLayout({
             viktoor.ru
           </a>
           <div className="hidden md:block font-mono text-sm font-bold">
-            [ EST. 2025 ]
+            [ EST. 2026 ]
           </div>
         </header>
 
         {children}
 
-        {/* Global Footer */}
         <footer className="bg-black text-white py-8 border-t-4 border-white mt-auto">
           <div className="container mx-auto px-4 text-center">
             <p className="font-mono font-bold text-lg">
@@ -63,6 +73,29 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+
+        {/* === ЯНДЕКС МЕТРИКА (SCRIPT) === */}
+        <Script id="yandex-metrika" strategy="afterInteractive">
+          {`
+            (function(m,e,t,r,i,k,a){
+                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();
+                for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109137828', 'ym');
+
+            ym(109137828, 'init', {
+                ssr: true,
+                webvisor: true,
+                clickmap: true,
+                ecommerce: "dataLayer",
+                referrer: document.referrer,
+                url: location.href,
+                accurateTrackBounce: true,
+                trackLinks: true
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
